@@ -4,5 +4,6 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/preetis-farsan/',
   plugins: [react(), tailwindcss()],
 })
