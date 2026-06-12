@@ -2,6 +2,7 @@ import Hero from "../components/Hero";
 import Carousel from "../components/Carousel";
 import { Link } from "react-router-dom";
 import Map from "../components/Map";
+import ReviewCarousel from "../components/ReviewCarousel";
 
 function Home() {
   const foodImages = [
@@ -43,7 +44,7 @@ function Home() {
           className="w-full h-full object-cover"
         />
       </Hero>
-      <section className="bg-[#fffced] py-10">
+      <section className="bg-[#fffced] py-10 shadow-2xl">
         <div className="px-15">
           <h1 className="text-[#800000] font-bold">About Us</h1>
           <p className="text-[#969695] py-5 font-semibold">
@@ -65,12 +66,12 @@ function Home() {
           <div className="flex justify-center mt-15">
             <Link to="/about">
               <button className="bg-[#fffced] font-semibold border-[#800000] border-2 
-              rounded-lg text-[#800000] py-2 px-6 hover:text-[#fffced] hover:bg-[#800000]/90 transition">
+              rounded-lg text-[#800000] py-2 px-6 hover:text-[#fffced] hover:bg-[#800000]/90 transition shadow-lg">
                 Learn More
               </button>
             </Link>
           </div>
-          </div>
+        </div>
         <hr className="my-10 border-[#800000]" />
         <div className="mb-10 mt-20 px-15">
           <h1 className="text-[#800000] font-bold">Popular Favourites</h1>
@@ -78,7 +79,11 @@ function Home() {
         <div className="py-10">
           <Carousel images={foodImages} />
         </div>
-        <Map />
+        <hr className="my-10 border-[#800000]" />
+        <div className="mb-10 mt-20 px-15">
+          <h1 className="text-[#800000] font-bold pb-10">Our Reviews</h1>
+          <ReviewCarousel />
+        </div>
       </section>
     </div>
   );

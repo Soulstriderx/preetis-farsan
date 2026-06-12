@@ -37,7 +37,7 @@ function Navbar() {
       </div>
       <div className="">
         <button
-        className="bg-[#fffced] text-[#800000] font-bold py-2 px-4 hover:bg-[#fffced]/90 transition mx-5 my-2 rounded-2xl"
+        className="bg-[#fffced] text-[#800000] font-bold py-2 px-4 hover:bg-[#fffced]/90 transition mx-5 my-2 rounded-2xl shadow-2xl"
         onClick={() => window.open("https://r.grab.com/g/6-20251109_184714_AAB6FC7989EE46D4940061D0EE8D35AF_MEXMPS-1-C7UEA3TBGZL1LT", "_blank")}
         >
           Order Now

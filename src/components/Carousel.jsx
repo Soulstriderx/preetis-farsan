@@ -47,7 +47,7 @@ export default function Carousel({ images }) {
             <img
               src={import.meta.env.BASE_URL + img.src}
               alt={img.alt}
-              className="w-full h-90 object-cover rounded-xl shadow-md"
+              className="w-full h-90 object-cover rounded-xl shadow-lg"
             />
             <p className="text-[#800000] text-lg font-semibold text-center">
               {img.alt}

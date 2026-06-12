@@ -1,6 +1,6 @@
 export default function Hero({ children }) {
   return (
-    <section className="relative h-100 w-full overflow-hidden">
+    <section className="relative h-100 w-full overflow-hidden shadow-2xl">
       
       <div className="absolute inset-0 z-0">
         {children}
