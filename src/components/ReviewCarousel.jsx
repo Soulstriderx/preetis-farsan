@@ -125,7 +125,8 @@ export default function ReviewCarousel({ variant = "reviews", reviews = defaultR
               className="bg-[#fffced] border-3 border-[#800000]/20 rounded-xl p-6 flex flex-col justify-between shadow-lg my-4"
             >
               <div>
-                <div className="flex gap-1 mb-3">
+                <p className="text-[#800000] font-semibold pb-2">{item.name}</p>
+                <div className="flex gap-1 justify-center items-center mb-3">
                   {Array.from({ length: item.rating }, (_, j) => (
                     <Star key={j} size={18} fill="#800000" color="#800000" />
                   ))}
@@ -134,7 +135,6 @@ export default function ReviewCarousel({ variant = "reviews", reviews = defaultR
                   &ldquo;{item.text}&rdquo;
                 </p>
               </div>
-              <p className="text-[#800000] font-semibold mt-4">— {item.name}</p>
             </div>
           )
         ))}

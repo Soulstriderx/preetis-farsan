@@ -18,19 +18,19 @@ function Home() {
 
   const features = [
     {
-      img: "Icons/No_garlic_vector_bg.png",
+      img: "Icons/Garlic_Crop.png",
       text: "Happy to accommodate no onion, no garlic (Jain-friendly) requests",
     },
     {
-      img: "Icons/No_garlic_vector_bg.png",
+      img: "Icons/Vegetarian_Crop.png",
       text: "Vegan-friendly options available.",
     },
     {
-      img: "Icons/No_garlic_vector_bg.png",
+      img: "Icons/Chaat_Crop.png",
       text: "Street-style chaats, just like the roadside bites in Mumbai.",
     },
     {
-      img: "Icons/No_garlic_vector_bg.png",
+      img: "Icons/Chai_Crop.png",
       text: "Masala chai, cutting chai, and desi coffee brewed strong and aromatic.",
     },
   ];
@@ -57,7 +57,7 @@ function Home() {
                 <img
                   src={import.meta.env.BASE_URL + item.img}
                   alt="Logo"
-                  className="h-30 aspect-square mx-auto"
+                  className="h-30 mx-auto"
                   />
                 <p className="text-wrap">{item.text}</p>
               </div>

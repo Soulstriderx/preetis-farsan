@@ -11,7 +11,7 @@ export default function Map() {
         referrerPolicy="no-referrer-when-downgrade"
       />
       <p className="text-[#fffced] font-semibold py-4">
-        Lebuh Gereja, George Town, 10200 George Town, Pulau Pinang
+        Lebuh Gereja, 10200 George Town, Pulau Pinang
       </p>
     </div>
   );
