@@ -1,6 +1,7 @@
 import Hero from "../components/Hero";
 import Carousel from "../components/Carousel";
 import { Link } from "react-router-dom";
+import Map from "../components/Map";
 
 function Home() {
   const foodImages = [
@@ -63,7 +64,8 @@ function Home() {
           </div>
           <div className="flex justify-center mt-15">
             <Link to="/about">
-              <button className="bg-[#fffced] border-[#800000] border-2 rounded-lg text-[#800000] py-2 px-6 hover:bg-[#f0edde]">
+              <button className="bg-[#fffced] font-semibold border-[#800000] border-2 
+              rounded-lg text-[#800000] py-2 px-6 hover:text-[#fffced] hover:bg-[#800000]/90 transition">
                 Learn More
               </button>
             </Link>
@@ -76,6 +78,7 @@ function Home() {
         <div className="py-10">
           <Carousel images={foodImages} />
         </div>
+        <Map />
       </section>
     </div>
   );

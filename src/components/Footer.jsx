@@ -2,7 +2,7 @@ function Footer() {
   return (
     <>
       <div style={{ background: "black", color: "white", textAlign: "center" }} className="">
-        <h6>For educational purposes only.</h6>
+        <h6>For private use.</h6>
       </div>
     </>
   );
