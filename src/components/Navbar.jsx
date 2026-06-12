@@ -15,7 +15,7 @@ function Navbar() {
       scrolled ? "bg-[#800000]" : "bg-transparent"
     }`}>
       <div className="">
-        <img src="/Logo/Preeti's Farsan_OfficialLogo_Cropped_Trans.png" alt="Logo" className="h-10 px-10 my-2" />
+        <img src={import.meta.env.BASE_URL + "Logo/Preeti's Farsan_OfficialLogo_Cropped_Trans.png"} alt="Logo" className="h-10 px-10 my-2" />
       </div>
       <div className="flex gap-4 items-center">
         <Link to="/">Home</Link>

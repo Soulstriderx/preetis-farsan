@@ -5,7 +5,7 @@ function Home() {
     <div>
       <Hero>
         <img
-          src="/Food Pictures/IMG_3569.jpeg"
+          src={import.meta.env.BASE_URL + "Food Pictures/IMG_3569.jpeg"}
           alt="Hero Background"
           className="w-full h-full object-cover"
         />
