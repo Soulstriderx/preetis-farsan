@@ -1,23 +1,23 @@
   const faqItems = [
     {
-      question: "What is Preeti's Farsan?",
+      question: "What type of cuisine do you serve?",
       answer:
-        "Preeti's Farsan is a home-based business specializing in authentic vegetarian Gujarati and North Indian snacks, started by Preetiben in Penang."
+        "We specialize in authentic home style Gujarati and North Indian vegetarian cooking, alongside beloved Mumbai street snacks and traditional Indian sweets. Our menu brings together bold flavours, comforting classics, and traditions that shape every dish."
     },
     {
-      question: "Where are you located?",
+      question: "Do you offer delivery services?",
       answer:
-        "We are based in Penang, Malaysia, with a cozy café in George Town serving our full range of snacks."
+        "Yes, we provide delivery services for your convenience. Check us out on GrabFood for delivery areas and charges. Alternatively, you could WhatsApp us to place your order and skip the minimum order fees!"
     },
     {
-      question: "Do you offer delivery?",
+      question: "Do you offer catering services or special event menus?",
       answer:
-        "Yes, we offer delivery within Penang. Orders can be placed through our website or by contacting us directly."
+        "Yes, we offer a special event menu for a variety of events. Contact us to discuss your requirements and customise options for your occasion."
     },
     {
-      question: "Are your products vegetarian?",
+      question: "Do you take event reservations?",
       answer:
-        "All our products are 100% vegetarian, prepared using traditional recipes and the finest ingredients."
+        "Yes, we accept reservations for events. Please reach out to us to book your event and discuss the details."
     }
   ];
 

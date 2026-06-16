@@ -55,9 +55,9 @@ function About() {
         <hr className="my-10 border-[#800000]" />
         <div className="px-15">
           <h1 className="text-[#800000] font-bold pb-5">FAQ</h1>
-          <div className="mt-5 space-y-2">
+          <div className="mt-5 flex flex-col gap-3 space-y-2">
             {faqItems.map((item, index) => (
-              <div key={index} className="border border-[#800000] rounded">
+              <div key={index} className="overflow-hidden border border-[#800000] rounded-lg">
                 <button
                   onClick={() => setOpenIndex(index === openIndex ? null : index)}
                   className="w-full text-left px-5 py-4 bg-[#800000] text-white font-semibold flex justify-between items-center"
