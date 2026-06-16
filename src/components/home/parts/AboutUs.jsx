@@ -3,7 +3,7 @@ import features from "../data/features";
 
 export default function AboutUs() {
   return (
-    <div className="px-15">
+    <div className="sm:px-15 px-5">
       <h1 className="text-[#800000] font-bold">About Us</h1>
       <p className="text-[#969695] py-5 font-semibold">
         Rooted in family tradition, Preeti’s Farsan serves authentic vegetarian Gujarati and North Indian street snacks & 

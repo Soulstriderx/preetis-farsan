@@ -8,7 +8,7 @@ function About() {
   return (
     <div>
       <section className="bg-[#fffced] py-10 shadow-2xl">
-        <div className="px-15 flex flex-col lg:flex-row gap-5">
+        <div className="sm:px-15 px-5 flex flex-col lg:flex-row gap-5">
           <div className="lg:w-1/2">
             <h1 className="text-[#800000] font-bold lg:pb-10 pb-3">Our Story</h1>
             <p className="text-[#969695] py-5 lg:px-5 xl:px-20 font-semibold  lg:text-start h-auto">
@@ -34,7 +34,7 @@ function About() {
           </div>
         </div>
         <hr className="my-10 border-[#800000]" />
-        <div className="px-15">
+        <div className="sm:px-15 px-5">
           <h1 className="text-[#800000] font-bold">Our Values</h1>
           <p className="text-[#969695] py-5 font-semibold">
             We believe in cooking with intention and care, preparing every dish just like it would be at home.
@@ -60,13 +60,13 @@ function About() {
               <div key={index} className="overflow-hidden border border-[#800000] rounded-lg">
                 <button
                   onClick={() => setOpenIndex(index === openIndex ? null : index)}
-                  className="w-full text-left px-5 py-4 bg-[#800000] text-white font-semibold flex justify-between items-center"
+                  className="w-full sm:text-left text-center px-5 py-4 bg-[#800000] text-white font-semibold flex justify-between items-center"
                 >
                   {item.question}
                   <span>{openIndex === index ? "\u2212" : "+"}</span>
                 </button>
                 {openIndex === index && (
-                  <div className="px-5 py-4 text-[#969695]">{item.answer}</div>
+                  <div className="px-5 py-4 sm:text-left text-center text-[#969695]">{item.answer}</div>
                 )}
               </div>
             ))}
