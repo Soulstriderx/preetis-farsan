@@ -75,10 +75,10 @@ function Navbar() {
           <NavLink to="/menu" className={linkClass}>
             Menu
           </NavLink>
-          <p className="text-xl">|</p>
+          {/* <p className="text-xl">|</p>
           <NavLink to="/more" className={linkClass}>
             More Offerings
-          </NavLink>
+          </NavLink> */}
           <p className="text-xl">|</p>
           <NavLink to="/contact" className={linkClass}>
             Contact
@@ -137,9 +137,9 @@ function Navbar() {
               Menu
             </NavLink>
 
-            <NavLink to="/more" onClick={() => setMobileOpen(false)} className={linkClass}>
+            {/* <NavLink to="/more" onClick={() => setMobileOpen(false)} className={linkClass}>
               More Offerings
-            </NavLink>
+            </NavLink> */}
 
             <NavLink to="/contact" onClick={() => setMobileOpen(false)} className={linkClass}>
               Contact

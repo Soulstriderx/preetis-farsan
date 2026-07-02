@@ -2,6 +2,7 @@ import Hero from "../components/Hero";
 import AboutUs from "../components/home/parts/AboutUs";
 import Reviews from "../components/home/parts/Review";
 import Food from "../components/home/parts/Food";
+import Customers from "../components/home/parts/Customers";
 
 function Home() {
   return (
@@ -19,6 +20,8 @@ function Home() {
         <Food />
         <hr className="my-10 border-[#800000]" />
         <Reviews />
+        <hr className="my-10 border-[#800000]" />
+        <Customers />
       </section>
     </div>
   );

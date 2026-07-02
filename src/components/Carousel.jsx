@@ -21,7 +21,7 @@ function useVisibleCount() {
   return count;
 }
 
-export default function Carousel({ images }) {
+export default function Carousel({ images, fullw = false }) {
   const visibleCount = useVisibleCount();
 
   const x = useMotionValue(0);
@@ -91,7 +91,7 @@ export default function Carousel({ images }) {
             <img
               src={import.meta.env.BASE_URL + img.src}
               alt={img.alt}
-              className="w-full h-72 object-cover rounded-xl shadow-lg pointer-events-none"
+              className={`w-full object-cover rounded-xl shadow-lg pointer-events-none ${fullw ? "h-full" : "h-72"}`}
             />
             <p className="text-[#800000] text-lg font-semibold text-center mt-2">{img.alt}</p>
           </div>

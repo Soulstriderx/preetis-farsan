@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, useMotionValue, animate } from "framer-motion";
-import { ChevronsLeft, ChevronsRight, Star } from "lucide-react";
+import { /*ChevronsLeft, ChevronsRight,*/ Star } from "lucide-react";
 import reviewData from "./home/data/reviews";
 
 function useVisibleCount() {
