@@ -1,111 +1,181 @@
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, useMotionValue, animate } from "framer-motion";
 import { ChevronsLeft, ChevronsRight, Star } from "lucide-react";
 import reviewData from "./home/data/reviews";
 
-// Usage
-// Reviews
-// <ReviewCarousel />
-
-// Images
-// <ReviewCarousel variant="images" images={[
-//   { src: "Food Pictures/IMG_6233.jpeg", alt: "Pav Bhaji", caption: "Signature Pav Bhaji" },
-// ]} />
-
 function useVisibleCount() {
   const [count, setCount] = useState(3);
+
   useEffect(() => {
     const update = () => {
       if (window.innerWidth < 640) setCount(1);
       else if (window.innerWidth < 1024) setCount(2);
       else setCount(3);
     };
+
     update();
-    addEventListener("resize", update);
-    return () => removeEventListener("resize", update);
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
   }, []);
+
   return count;
 }
 
-export default function ReviewCarousel({ variant = "reviews", reviews = reviewData, images }) {
+function useIsTouch() {
+  const [touch, setTouch] = useState(false);
+
+  useEffect(() => {
+    setTouch("ontouchstart" in window || navigator.maxTouchPoints > 0);
+  }, []);
+
+  return touch;
+}
+
+export default function ReviewCarousel({
+  variant = "reviews",
+  reviews = reviewData,
+  images,
+}) {
   const visibleCount = useVisibleCount();
-  const [startIdx, setStartIdx] = useState(0);
+  const isTouch = useIsTouch();
 
   const items = variant === "images" ? images : reviews;
-  const total = items?.length ?? 0;
+  const total = items?.length || 0;
+
+  const maxIndex = Math.max(0, total - visibleCount);
+
+  const x = useMotionValue(0);
+  const containerRef = useRef(null);
+
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  const itemWidth = 100 / visibleCount;
+
+  const snapTo = (newIndex) => {
+    const clamped = Math.max(0, Math.min(newIndex, maxIndex));
+
+    const width = containerRef.current?.offsetWidth || 0;
+    const targetX = -(clamped * (width / visibleCount));
+
+    animate(x, targetX, {
+      type: "spring",
+      stiffness: 250,
+      damping: 30,
+    });
+
+    setIndex(clamped);
+  };
 
   const next = () => {
-    const nextIdx = startIdx + visibleCount;
-    setStartIdx(nextIdx >= total ? 0 : nextIdx);
-  };
-  const prev = () => {
-    const prevIdx = startIdx - visibleCount;
-    setStartIdx(prevIdx < 0 ? Math.max(0, total - visibleCount) : prevIdx);
+    const newIndex = index >= maxIndex ? 0 : index + 1;
+    snapTo(newIndex);
   };
 
-  const stripWidth = (total / visibleCount) * 100;
-  const offset = (startIdx * 100) / total;
+  const prev = () => {
+    const newIndex = index <= 0 ? maxIndex : index - 1;
+    snapTo(newIndex);
+  };
+
+  useEffect(() => {
+    if (paused) return;
+
+    const interval = setInterval(() => {
+      next();
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [index, paused]);
+
+  const handleDragEnd = (_, info) => {
+    if (!isTouch) return;
+
+    const threshold = 50;
+
+    if (info.offset.x < -threshold) next();
+    else if (info.offset.x > threshold) prev();
+    else snapTo(index);
+  };
 
   return (
-    <div className="relative w-full max-w-5xl mx-auto overflow-hidden">
+    <div
+      className="relative w-full max-w-5xl mx-auto overflow-hidden"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
       <motion.div
-        animate={{ x: `-${offset}%` }}
-        transition={{ type: "spring", stiffness: 250, damping: 25 }}
-        className="flex gap-6"
-        style={{ width: `${stripWidth}%` }}
+        ref={containerRef}
+        className={`flex ${isTouch ? "cursor-grab active:cursor-grabbing" : ""}`}
+        style={{ x }}
+        drag={isTouch ? "x" : false}
+        dragElastic={0.1}
+        dragMomentum={false}
+        onDragEnd={handleDragEnd}
       >
         {items.map((item, i) => (
-          variant === "images" ? (
-            <div
-              key={i}
-              style={{ width: `${100 / total}%` }}
-            >
-              <img
-                src={import.meta.env.BASE_URL + item.src}
-                alt={item.alt}
-                className="w-full aspect-4/4 object-cover rounded-xl shadow-md"
-              />
-              {item.caption && (
-                <p className="text-[#800000] text-lg font-semibold text-center mt-2">
-                  {item.caption}
-                </p>
-              )}
-            </div>
-          ) : (
-            <div
-              key={i}
-              style={{ width: `${100 / total}%` }}
-              className="bg-[#fffced] border-3 border-[#800000]/20 rounded-xl p-6 flex flex-col justify-between shadow-lg my-4"
-            >
-              <div>
-                <p className="text-[#800000] font-semibold pb-2">{item.name}</p>
-                <div className="flex gap-1 justify-center items-center mb-3">
-                  {Array.from({ length: item.rating }, (_, j) => (
-                    <Star key={j} size={18} fill="#800000" color="#800000" />
-                  ))}
+          <div
+            key={i}
+            className="shrink-0 px-3"
+            style={{ width: `${itemWidth}%` }}
+          >
+            {/* IMAGE MODE */}
+            {variant === "images" ? (
+              <>
+                <img
+                  src={import.meta.env.BASE_URL + item.src}
+                  alt={item.alt}
+                  className="w-full aspect-square object-cover rounded-xl shadow-md"
+                />
+                {item.caption && (
+                  <p className="text-[#800000] text-lg font-semibold text-center mt-2">
+                    {item.caption}
+                  </p>
+                )}
+              </>
+            ) : (
+              /* REVIEW MODE */
+              <div className="bg-[#fffced] border border-[#800000]/20 rounded-xl p-6 flex flex-col justify-between shadow-lg h-full">
+                <div>
+                  <p className="text-[#800000] font-semibold pb-2">
+                    {item.name}
+                  </p>
+
+                  <div className="flex gap-1 justify-center items-center mb-3">
+                    {Array.from({ length: item.rating }, (_, j) => (
+                      <Star
+                        key={j}
+                        size={18}
+                        fill="#800000"
+                        color="#800000"
+                      />
+                    ))}
+                  </div>
+
+                  <p className="text-[#969695] italic leading-relaxed">
+                    “{item.text}”
+                  </p>
                 </div>
-                <p className="text-[#969695] italic leading-relaxed">
-                  &ldquo;{item.text}&rdquo;
-                </p>
               </div>
-            </div>
-          )
+            )}
+          </div>
         ))}
       </motion.div>
 
-      <button
+      {/* Navigation Buttons, Draggable on all breakpoints, if needed, uncomment */}
+      {/* <button
         onClick={prev}
-        className="absolute left-0 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white rounded-full w-10 h-10 flex items-center justify-center transition z-10"
+        className="absolute left-0 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white rounded-full w-10 h-10 flex items-center justify-center z-10"
       >
         <ChevronsLeft size={32} color="#fffced" />
       </button>
+
       <button
         onClick={next}
-        className="absolute right-0 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white rounded-full w-10 h-10 flex items-center justify-center transition z-10"
+        className="absolute right-0 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white rounded-full w-10 h-10 flex items-center justify-center z-10"
       >
         <ChevronsRight size={32} color="#fffced" />
-      </button>
+      </button> */}
     </div>
-  )
+  );
 }
 
