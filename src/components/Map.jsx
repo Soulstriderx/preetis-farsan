@@ -10,7 +10,7 @@ export default function Map() {
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
       />
-      <p className="text-[#fffced] font-semibold py-4">
+      <p className="text-[#fffced] font-semibold py-4 font-title">
         92B, Lebuh Gereja, 10200 George Town, Pulau Pinang
       </p>
     </div>

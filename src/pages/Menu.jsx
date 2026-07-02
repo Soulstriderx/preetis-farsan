@@ -4,14 +4,14 @@ function Menu() {
   return (
     <div>
       <section className="bg-[#fffced] py-10 md:px-15 px-5">
-        <h1 className="text-[#800000] font-bold">Restaurant Menu</h1>
+        <h1 className="text-[#800000] font-bold">RESTAURANT MENU</h1>
         <div className="flex items-center text-black gap-1">
           <img src={import.meta.env.BASE_URL + "Icons/Vegan_icon.png"} alt="Vegan" className="w-10 h-10" />
-          <p>Available Vegan</p>
+          <p className="font-text">Available Vegan</p>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
           <div className="flex flex-col text-left space-y-6 order-2 lg:order-1">
-            <h2 className="text-4xl font-bold text-[#800000]">Classic Chaat</h2>
+            <h2 className="text-4xl font-bold text-[#800000]">CLASSIC CHAAT</h2>
             <Foodname
               name="PANI PURI"
               description="Crisp-fried 5 Puris filled with potatoes, black chickpeas
@@ -92,7 +92,7 @@ function Menu() {
               <img src={import.meta.env.BASE_URL + "Food Pictures/PAV BHAJI.png"} className="w-full h-full object-cover" alt="collage-2" />
             </div>
             <div className="col-span-3 row-span-2 lg:row-span-3 flex flex-col space-y-6">
-              <h2 className="text-4xl font-bold text-[#800000]">Hot Bites Special</h2>
+              <h2 className="text-4xl font-bold text-[#800000]">HOT BITES SPECIAL</h2>
               <Foodname
                 name="ALOO TIKKI"
                 description="2 pcs of delicious bite size pieces of Bombay potato patties served with our signature chutneys."
@@ -163,7 +163,7 @@ function Menu() {
               <img src={import.meta.env.BASE_URL + "Food Pictures/BUTTER PANEER.png"} className="w-full h-full object-cover" alt="collage-2" />
             </div>
             <div className="col-span-3 row-span-2 lg:row-span-3 flex flex-col space-y-6">
-              <h2 className="text-4xl font-bold text-[#800000]">Paneer & Combo</h2>
+              <h2 className="text-4xl font-bold text-[#800000]">PANEER & COMBO</h2>
               <Foodname
                 name="MIX VEGETABLE BIRYANI"
                 description="Fresh mixed veg biryani with fragrant basmati rice served with vegetables, pickle, fresh curd & papadom."
@@ -219,7 +219,7 @@ function Menu() {
               <img src={import.meta.env.BASE_URL + "Food Pictures/GulabJamun.jpg"} className="w-full h-full object-cover" />
             </div>
             <div className="col-span-3 flex flex-col space-y-6">
-              <h2 className="text-4xl font-bold text-[#800000]">Sweet Treats</h2>
+              <h2 className="text-4xl font-bold text-[#800000]">SWEET TREATS</h2>
               <Foodname
                 name="RASMALAI"
                 description="A single piece of soft, sweet, and spongy delight soaked in aromatic flavored milk, topped with almond slivers and saffron."
@@ -249,7 +249,7 @@ function Menu() {
               <img src={import.meta.env.BASE_URL + "Food Pictures/Chai1.jpg"} className="w-full h-full object-cover" />
             </div>
             <div className="col-span-3 flex flex-col space-y-6">
-              <h2 className="text-4xl font-bold text-[#800000]">Tea-time Specials</h2>
+              <h2 className="text-4xl font-bold text-[#800000]">TEA-TIME SPECIALS</h2>
               <Foodname
                 name="DESI MASALA CHAI"
                 description="Brewed just like the ones you'd find on the bustling streets of India. Rich, aromatic, and spiced to perfection!"
@@ -307,7 +307,7 @@ function Menu() {
               <img src={import.meta.env.BASE_URL + "Food Pictures/DrinkOJ.jpg"} className="w-full h-full object-cover object-top" alt="collage-2" />
             </div>
             <div className="col-span-4 flex flex-col space-y-6">
-              <h2 className="text-4xl font-bold text-[#800000]">Drinks</h2>
+              <h2 className="text-4xl font-bold text-[#800000]">DRINKS</h2>
               <Foodname
                 name="CHAAS (MOORU)"
                 description="Spiced buttermilk drink made from fresh yogurt known for its refreshing and cooling effect, especially during hot weather."
@@ -337,16 +337,19 @@ function Menu() {
       <section className="bg-[#fffced] py-10 md:px-15 px-5">
         <div className="flex justify-between">
           <button
-            className="bg-[#fffced] border border-[#800000] text-[#800000] font-bold py-2 px-4 hover:bg-[#fffced]/90 transition mx-5 my-2 rounded-lg shadow-2xl"
+            className="bg-[#fffced] font-semibold border-[#800000] border-2 
+          rounded-lg text-[#800000] py-2 px-6 hover:text-[#fffced] hover:bg-[#800000]/90 transition shadow-lg font-title"
             onClick={() => window.open(import.meta.env.BASE_URL + "pdf/Menu.pdf", "_blank")}
           >
             Restaurant Menu
           </button>
-          <button className="bg-[#fffced] border border-[#800000] text-[#800000] font-bold py-2 px-4 hover:bg-[#fffced]/90 transition mx-5 my-2 rounded-lg shadow-2xl">
+          <button className="bg-[#fffced] font-semibold border-[#800000] border-2 
+          rounded-lg text-[#800000] py-2 px-6 hover:text-[#fffced] hover:bg-[#800000]/90 transition shadow-lg font-title">
             Event Menu
           </button>
           <button
-            className="bg-[#fffced] border border-[#800000] text-[#800000] font-bold py-2 px-4 hover:bg-[#fffced]/90 transition mx-5 my-2 rounded-lg shadow-2xl"
+            className="bg-[#fffced] font-semibold border-[#800000] border-2 
+          rounded-lg text-[#800000] py-2 px-6 hover:text-[#fffced] hover:bg-[#800000]/90 transition shadow-lg font-title"
             onClick={() => window.open("https://wa.me/60123456789", "_blank")}
           >
             WhatsApp Now

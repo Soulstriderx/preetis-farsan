@@ -4,8 +4,8 @@ import features from "../data/features";
 export default function AboutUs() {
   return (
     <div className="sm:px-15 px-5">
-      <h1 className="text-[#800000] font-bold">About Us</h1>
-      <p className="text-[#969695] py-5 font-semibold">
+      <h1 className="text-[#800000] font-bold">ABOUT US</h1>
+      <p className="text-[#969695] py-5 font-semibold font-text">
         Rooted in family tradition, Preeti’s Farsan serves authentic vegetarian Gujarati and North Indian street snacks & 
         dishes prepared with fresh ingredients and no artificial additives. Every dish carries the warmth of home and the joy of sharing.
       </p>
@@ -17,14 +17,14 @@ export default function AboutUs() {
               alt="Logo"
               className="h-30 mx-auto"
               />
-            <p className="text-wrap">{item.text}</p>
+            <p className="text-wrap font-text">{item.text}</p>
           </div>
         ))}
       </div>
       <div className="flex justify-center mt-15">
         <Link to="/about">
           <button className="bg-[#fffced] font-semibold border-[#800000] border-2 
-          rounded-lg text-[#800000] py-2 px-6 hover:text-[#fffced] hover:bg-[#800000]/90 transition shadow-lg">
+          rounded-lg text-[#800000] py-2 px-6 hover:text-[#fffced] hover:bg-[#800000]/90 transition shadow-lg font-title">
             Learn More
           </button>
         </Link>
