@@ -16,7 +16,7 @@ function Navbar() {
     : "text-[#fffced] hover:scale-110 hover:text-[#fffced]/90 transition-transform inline-block";
 
   return (
-    <div className={`sticky top-0 z-50 w-full transition-colors duration-300 ${scrolled ? "bg-[#800000]" : "bg-transparent"}`}>
+    <div className={`sticky top-0 z-50 w-full transition-colors duration-0 ${scrolled ? "bg-[#800000]" : "bg-transparent"}`}>
       <div className="lg:flex hidden justify-between lg:justify-around gap-4 py-4 text-white font-bold items-center">
         <div className="">
           <Link to="/">
