@@ -21,23 +21,8 @@ function useVisibleCount() {
   return count;
 }
 
-function useIsTouch() {
-  const [touch, setTouch] = useState(false);
-
-  useEffect(() => {
-    setTouch("ontouchstart" in window || navigator.maxTouchPoints > 0);
-  }, []);
-
-  return touch;
-}
-
-export default function ReviewCarousel({
-  variant = "reviews",
-  reviews = reviewData,
-  images,
-}) {
+export default function ReviewCarousel({ variant = "reviews", reviews = reviewData, images }) {
   const visibleCount = useVisibleCount();
-  const isTouch = useIsTouch();
 
   const items = variant === "images" ? images : reviews;
   const total = items?.length || 0;
@@ -88,8 +73,6 @@ export default function ReviewCarousel({
   }, [index, paused]);
 
   const handleDragEnd = (_, info) => {
-    if (!isTouch) return;
-
     const threshold = 50;
 
     if (info.offset.x < -threshold) next();
@@ -98,65 +81,39 @@ export default function ReviewCarousel({
   };
 
   return (
-    <div
-      className="relative w-full max-w-5xl mx-auto overflow-hidden"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-    >
+    <div className="relative w-full max-w-5xl mx-auto overflow-hidden" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
       <motion.div
         ref={containerRef}
-        className={`flex ${isTouch ? "cursor-grab active:cursor-grabbing" : ""}`}
+        className="flex cursor-grab active:cursor-grabbing"
         style={{ x }}
-        drag={isTouch ? "x" : false}
-        dragElastic={0.1}
-        dragMomentum={false}
+        drag="x"
+        dragElastic={0.15}
+        dragMomentum={true}
         onDragEnd={handleDragEnd}
       >
         {items.map((item, i) => (
-          <div
-            key={i}
-            className="shrink-0 px-3"
-            style={{ width: `${itemWidth}%` }}
-          >
+          <div key={i} className="shrink-0 px-3" style={{ width: `${itemWidth}%` }}>
             {/* IMAGE MODE */}
-            {variant === "images" ? (
+            {variant === "images" ?
               <>
-                <img
-                  src={import.meta.env.BASE_URL + item.src}
-                  alt={item.alt}
-                  className="w-full aspect-square object-cover rounded-xl shadow-md"
-                />
-                {item.caption && (
-                  <p className="text-[#800000] text-lg font-semibold text-center mt-2">
-                    {item.caption}
-                  </p>
-                )}
+                <img src={import.meta.env.BASE_URL + item.src} alt={item.alt} className="w-full aspect-square object-cover rounded-xl shadow-md" />
+                {item.caption && <p className="text-[#800000] text-lg font-semibold text-center mt-2">{item.caption}</p>}
               </>
-            ) : (
-              /* REVIEW MODE */
+            : /* REVIEW MODE */
               <div className="bg-[#fffced] border border-[#800000]/20 rounded-xl p-6 flex flex-col justify-between shadow-lg h-full">
                 <div>
-                  <p className="text-[#800000] font-semibold pb-2">
-                    {item.name}
-                  </p>
+                  <p className="text-[#800000] font-semibold pb-2">{item.name}</p>
 
                   <div className="flex gap-1 justify-center items-center mb-3">
                     {Array.from({ length: item.rating }, (_, j) => (
-                      <Star
-                        key={j}
-                        size={18}
-                        fill="#800000"
-                        color="#800000"
-                      />
+                      <Star key={j} size={18} fill="#800000" color="#800000" />
                     ))}
                   </div>
 
-                  <p className="text-[#969695] italic leading-relaxed">
-                    “{item.text}”
-                  </p>
+                  <p className="text-[#969695] italic leading-relaxed">“{item.text}”</p>
                 </div>
               </div>
-            )}
+            }
           </div>
         ))}
       </motion.div>
@@ -178,4 +135,3 @@ export default function ReviewCarousel({
     </div>
   );
 }
-

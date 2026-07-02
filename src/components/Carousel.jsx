@@ -21,19 +21,8 @@ function useVisibleCount() {
   return count;
 }
 
-function useIsTouchDevice() {
-  const [isTouch, setIsTouch] = useState(false);
-
-  useEffect(() => {
-    setIsTouch("ontouchstart" in window || navigator.maxTouchPoints > 0);
-  }, []);
-
-  return isTouch;
-}
-
 export default function Carousel({ images }) {
   const visibleCount = useVisibleCount();
-  const isTouch = useIsTouchDevice();
 
   const x = useMotionValue(0);
   const containerRef = useRef(null);
@@ -79,8 +68,6 @@ export default function Carousel({ images }) {
   }, [index, paused]);
 
   const handleDragEnd = (_, info) => {
-    if (!isTouch) return;
-
     const threshold = 50;
 
     if (info.offset.x < -threshold) next();
@@ -89,34 +76,24 @@ export default function Carousel({ images }) {
   };
 
   return (
-    <div
-      className="relative w-full max-w-5xl mx-auto overflow-hidden"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-    >
+    <div className="relative w-full max-w-5xl mx-auto overflow-hidden" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
       <motion.div
         ref={containerRef}
-        className={`flex ${isTouch ? "cursor-grab active:cursor-grabbing" : ""}`}
+        className="flex cursor-grab active:cursor-grabbing"
         style={{ x }}
-        drag={isTouch ? "x" : false}
-        dragElastic={0.1}
-        dragMomentum={false}
+        drag="x"
+        dragElastic={0.15}
+        dragMomentum={true}
         onDragEnd={handleDragEnd}
       >
         {images.map((img, i) => (
-          <div
-            key={i}
-            className="shrink-0 px-2"
-            style={{ width: `${itemWidth}%` }}
-          >
+          <div key={i} className="shrink-0 px-2" style={{ width: `${itemWidth}%` }}>
             <img
               src={import.meta.env.BASE_URL + img.src}
               alt={img.alt}
               className="w-full h-72 object-cover rounded-xl shadow-lg pointer-events-none"
             />
-            <p className="text-[#800000] text-lg font-semibold text-center mt-2">
-              {img.alt}
-            </p>
+            <p className="text-[#800000] text-lg font-semibold text-center mt-2">{img.alt}</p>
           </div>
         ))}
       </motion.div>
