@@ -73,7 +73,7 @@ function Menu() {
       })}
       <section className="bg-[#fffced] py-6 md:px-15 px-5">
         <p className="font-text text-black mb-6">All food and drink items are subject to a 10% service charge.</p>
-        <div className="flex justify-between">
+        <div className="flex flex-wrap justify-between">
           <button
             className="bg-[#fffced] font-semibold border-[#800000] border-2
           rounded-lg text-[#800000] py-2 px-6 hover:text-[#fffced] hover:bg-[#800000]/90 transition shadow-lg font-title"
