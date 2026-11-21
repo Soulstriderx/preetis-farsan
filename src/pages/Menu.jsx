@@ -82,7 +82,7 @@ function Menu() {
             Restaurant Menu
           </button>
           <button className="bg-[#fffced] font-semibold border-[#800000] border-2
-          rounded-lg text-[#800000] py-2 px-6 hover:text-[#fffced] hover:bg-[#800000]/90 transition shadow-lg font-title">
+          rounded-lg text-[#800000] py-2 px-6 hover:text-[#fffced] hover:bg-[#800000]/90 transition shadow-lg font-title hidden">
             Event Menu
           </button>
           <button
